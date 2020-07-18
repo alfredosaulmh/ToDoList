@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "to_dos",
+  "info": {
+    "name": "ToDo"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Description": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pendient",
+        "inprogress",
+        "success"
+      ]
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "to_dos"
+    }
+  }
+}
