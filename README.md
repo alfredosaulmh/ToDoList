@@ -10,7 +10,7 @@ npm run develop
 Nos enviara a una ruta http://localhost:1337/admin/auth/login :
 Aqui el usuario es admin , contraseña admin123
 
-#Client
+# Client
 Para inicializar la parte del cliente se necesita la instalación de node_modules :
 cd client
 npm install
