@@ -12,8 +12,8 @@ Aqui el usuario es admin , contraseña admin123
 
 # Client
 Para inicializar la parte del cliente se necesita la instalación de node_modules :
-cd client
-npm install
-Para inicializar el client :
-npm start
+cd client<br/>
+npm install<br/>
+Para inicializar el client :<br/>
+npm start<br/>
 Nos enviara a una ruta http://localhost:4200
