@@ -1,19 +1,33 @@
 <div class="container">
   <section>
-    <div>
-      <h2>Sección de tareas</h2>
+    <div class="container">
+      <div>
+        <h2>Sección de tareas</h2>
+      </div>
+      <div>
+        <label>Nueva tarea</label>
+        <input #taskDescription>
+        <button (click)="add(taskDescription.value); taskDescription.value=''">Agregar</button>
+      </div>
     </div>
-    <div>
-      <label>Nueva tarea</label>
-      <input #taskDescription>
-      <button (click)="add(taskDescription.value); taskDescription.value=''">Agregar</button>
+    <div class="container">
+      <table>
+        <th>Tarea</th>
+        <th>Status</th>
+        <th>Opciones</th>
+        <tr *ngFor="let task of tasking">
+          <td>{{task.Description}}</td>
+          <td>
+            <select >
+              <option *ngFor="let state of statusList" value="{{state.id}}" >{{state.status}}</option>
+            </select>
+          </td>
+          <td><button class="delete" title="delete hero"
+                      (click)="delete(task)">x</button></td>
+        </tr>
+      </table>
     </div>
-    <ul>
-      <li *ngFor="let task of tasking">
-        <span>{{task.status}}</span>
-        <span>{{task.Description}}</span>
-      </li>
-    </ul>
+
   </section>
 </div>
 

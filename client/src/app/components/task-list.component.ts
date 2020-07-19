@@ -3,6 +3,11 @@ import { Router, ActivatedRoute, Params} from "@angular/router";
 import {TaskService} from "../services/task.service";
 import {Task} from "../models/task";
 
+export interface  type{
+  id: string;
+  status: string;
+}
+
 
 @Component({
   selector: 'task-list',
@@ -15,6 +20,12 @@ export class TaskListComponent implements OnInit{
   public errorMessage: any;
   tasking: Task[];
   editTask: Task;
+  public statusList:type[] = [
+    {id:"pendient", status: "Pendiente"},
+    {id:"inprogress", status: "En Progreso"},
+    {id:"success", status: "Completada"}
+  ];
+
 
 
   constructor(
@@ -26,7 +37,9 @@ export class TaskListComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.statusList;
     console.log("Task List Component list");
+    console.log(this.statusList);
     this.getTask();
   }
   getTask(){
@@ -48,12 +61,24 @@ export class TaskListComponent implements OnInit{
     this._taskService.addTask(newTask).subscribe(task => this.tasking.push(task));
   }
   delete(task: Task): void {
+    this.tasking = this.tasking.filter(t => t !== task);
+    this._taskService.deleteTask(task.id).subscribe();
 
   }
   edit(task: Task){
+    this.editTask = task;
 
   }
   update(){
+    if (this.editTask){
+      this._taskService.updateTask(this.editTask).subscribe( task => {
+        const ix = task ? this.tasking.findIndex(t => t.id === task.id) : -1 ;
+        if (ix > -1){
+          this.tasking[ix] = task;
+        }
+      });
+      this.editTask = undefined;
+    }
 
   }
 }
