@@ -19,7 +19,7 @@
           <td>{{task.Description}}</td>
           <td>
             <select >
-              <option *ngFor="let state of statusList" value="{{state.id}}" >{{state.status}}</option>
+              <option *ngFor="let state of statusList" value="{{state.id}}"  (click)="edit(task)"  >{{state.status}}</option>
             </select>
           </td>
           <td><button class="delete" title="delete hero"
